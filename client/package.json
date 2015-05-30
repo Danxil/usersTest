@@ -1,7 +1,9 @@
 {
   "name": "test",
   "version": "0.0.0",
-  "dependencies": {},
+  "dependencies": {
+    "grunt-connect-proxy": "^0.2.0"
+  },
   "devDependencies": {
     "coffee-script": "^1.9.3",
     "grunt": "^0.4.1",
