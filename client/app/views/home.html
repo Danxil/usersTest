@@ -1,1 +1,7 @@
-<p>This is the home view.</p>
+<ul class="list-group">
+  <li class="list-group-item" data-ng-repeat="customer in customers">
+    <a data-ng-href="#edit-customer/{{customer.id}}">
+      <p>{{customer.name}} <i>({{customer.email}})</i></p>
+    </a>
+  </li>
+</ul>

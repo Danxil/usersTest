@@ -22,6 +22,9 @@ angular
       .when '/home',
         templateUrl: 'views/home.html'
         controller: 'HomeCtrl'
+      .when '/edit-customer/:id',
+        templateUrl: 'views/edit-customer.html'
+        controller: 'EditCustomerCtrl'
       .otherwise
         redirectTo: '/home'
 

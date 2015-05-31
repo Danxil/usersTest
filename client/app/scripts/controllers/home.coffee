@@ -8,10 +8,6 @@
  # Controller of the testApp
 ###
 angular.module('testApp')
-  .controller 'HomeCtrl', ($scope, customersManager) ->
-    customersManager.fetchCustomers()
-    customersManager.fetchCustomers(1)
-
-    setTimeout ->
-      console.log customersManager.getCustomers(1)
-    , 1000
+  .controller 'HomeCtrl', ($scope, customersManager, $q) ->
+    $q.when customersManager.fetchCustomers(), (data)->
+      $scope.customers = data

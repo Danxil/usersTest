@@ -1,0 +1,9 @@
+<form name="editCustomerForm" ng-submit="submit()">
+  <div class="form-group" data-ng-if="fieldName != 'id'" data-ng-repeat="(fieldName, fieldValue) in viewCustomer">
+    <label>
+      <edit-customer-label data-field-name="{{fieldName}}"></edit-customer-label>
+    </label>
+    <input name="{{fieldName}}" class="form-control" data-ng-model="viewCustomer[fieldName]" data-field-validation="{{fieldName}}">
+  </div>
+  <button type="submit" class="btn btn-default btn-primary {{editCustomerForm.$invalid ? 'disabled' : ''}}">Submit</button>
+</form>

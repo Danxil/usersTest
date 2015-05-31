@@ -29,19 +29,36 @@ angular.module('testApp')
         deferred = $q.defer()
         scope = this
 
-        Customers.query {id: id}, (customersArray)->
+        Customers[if id then 'get' else 'query'] {id: id}, (response)->
           customers = []
 
-          customersArray.forEach (customerData) ->
-            customer = scope._retrieveInstance(customerData)
-            customers.push customer
+          if response.forEach
+            response.forEach (customerData) ->
+              customer = scope._retrieveInstance(customerData)
+              customers.push customer
 
-          deferred.resolve customers
+            deferred.resolve customers
+          else
+            customer = scope._retrieveInstance(response)
+            deferred.resolve customer
 
         deferred.promise
 
       getCustomers: (id)->
-        if (id) then @_pool[id] else @_pool
+        if id then @_pool[id] else @_pool
+
+      getOrFetchCustomers: (id)->
+        deferred = $q.defer()
+
+        exist = if id then @_pool[id] else (if !_.isEmpty @_pool then @_pool else undefined)
+
+        if exist
+          deferred.resolve exist
+        else
+          $q.when @fetchCustomers(id), (response)->
+            deferred.resolve response
+
+        deferred.promise
 
       createCustomer: (customerData) ->
         deferred = $q.defer()
