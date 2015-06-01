@@ -8,36 +8,41 @@
  # Controller of the testApp
 ###
 angular.module('testApp')
-  .controller 'EditCustomerCtrl', ($scope, $rootScope, $routeParams, customersManager, $q, $location) ->
-    defaultCustomer = null
-
-    $q.when customersManager.fetchCustomers($routeParams.id), (data)->
-      defaultCustomer = data
-      $scope.viewCustomer = data.toJSON()
-
-    $scope.submit = ->
-      sendCustomer = angular.copy(defaultCustomer)
-
-      _.each sendCustomer, (item, key)->
+  .controller 'EditCustomerCtrl',
+  (customerData, $scope, $rootScope, $routeParams, customersManager, $location, $timeout) ->
+    filterUpdatedFieldsFn = (viewCustomer, defaultCustomer)->
+      viewCustomer = angular.copy(viewCustomer)
+      _.each viewCustomer, (item, key)->
         if key == 'id'
           return
 
-        if item != $scope.viewCustomer[key] && $scope.viewCustomer[key]
-          sendCustomer[key] = $scope.viewCustomer[key]
-        else
-          delete sendCustomer[key]
+        if item == defaultCustomer[key]
+          delete viewCustomer[key]
 
-      wasUpdated = angular.copy sendCustomer
-      delete wasUpdated['id']
+      viewCustomer
 
+    wasUpdatedFn = (sendCustomer, defaultCustomer)->
+      filteredFields = filterUpdatedFieldsFn $scope.viewCustomer, defaultCustomer
+      delete filteredFields['id']
+      !_.isEmpty filteredFields
+
+    defaultCustomer = angular.copy customerData
+    $scope.viewCustomer = angular.copy customerData
+
+    $scope.$watchCollection 'viewCustomer', ->
+      $timeout ->
+        $scope.wasUpdated = wasUpdatedFn $scope.viewCustomer, defaultCustomer
+
+    $scope.submit = ->
       $rootScope.setOverlay true
 
-      if _.isEmpty wasUpdated
+      customersManager.updateCustomer $scope.viewCustomer, ->
         $rootScope.setOverlay false, ->
           $location.path '/home'
 
-        return
+    $scope.delete = ->
+      $rootScope.setOverlay true
 
-      $q.when sendCustomer.$update(), ->
+      customersManager.deleteCustomer $scope.viewCustomer, ->
         $rootScope.setOverlay false, ->
           $location.path '/home'

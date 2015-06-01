@@ -7,7 +7,7 @@
  # # editCustomersLabel
 ###
 angular.module('testApp')
-  .directive('editCustomerLabel', ->
+  .directive('customerFieldLabel', ->
     restrict: 'E'
     scope:
       fieldName: '@'

@@ -1,0 +1,12 @@
+<p class="text-right">
+  <a class="btn btn-default btn-primary" href="#/home">Customers list</a>
+</p>
+<form name="createCustomerForm" ng-submit="submit()">
+  <div class="form-group" data-ng-repeat="(fieldName, fieldValue) in newCustomer">
+    <label>
+      <customer-field-label data-field-name="{{fieldName}}"></customer-field-label>
+    </label>
+    <input name="{{fieldName}}" class="form-control" data-ng-model="newCustomer[fieldName]" data-customer-field-validation="{{fieldName}}">
+  </div>
+  <button type="submit" class="btn btn-default btn-primary {{createCustomerForm.$invalid ? 'disabled' : ''}}">Create customer</button>
+</form>

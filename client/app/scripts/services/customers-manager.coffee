@@ -14,22 +14,21 @@ angular.module('testApp')
     customersManager =
       _pool: {}
 
+      _fetchedAll: false
+
       _retrieveInstance: (customerData) ->
-        instance = @_pool[customerData.id]
+        @_pool[customerData.id] = if customerData.toJSON then customerData.toJSON() else customerData
 
-        if instance
-          instance = customerData
-        else
-          instance = new Customers(customerData)
-          @_pool[customerData.id] = instance
+      _deleteInstance: (customerData) ->
+        delete @_pool[customerData.id]
 
-        instance
-
-      fetchCustomers: (id)->
+      fetchCustomers: (id, callback, errorCallback)->
         deferred = $q.defer()
         scope = this
 
-        Customers[if id then 'get' else 'query'] {id: id}, (response)->
+        isId = id and typeof id != 'function'
+
+        Customers[if isId then 'get' else 'query'] {id: id}, (response)->
           customers = []
 
           if response.forEach
@@ -37,36 +36,84 @@ angular.module('testApp')
               customer = scope._retrieveInstance(customerData)
               customers.push customer
 
+            scope._fetchedAll = true
             deferred.resolve customers
+
+            if callback then callback(customers)
           else
             customer = scope._retrieveInstance(response)
             deferred.resolve customer
+            if callback then callback(customer)
+
+        , (error)->
+          deferred.reject()
+          if errorCallback then errorCallback(error)
+
+        deferred.promise
+
+      getOrFetchCustomers: (id, callback, errorCallback)->
+        deferred = $q.defer()
+
+        isId = id and typeof id != 'function'
+
+        exist = if isId then @_pool[id] else (if @_fetchedAll then @_pool else undefined)
+
+        if exist
+          deferred.resolve exist
+          if callback then callback(exist)
+        else
+          $q.when @fetchCustomers(id, callback, errorCallback), (response)->
+            deferred.resolve response
+          , (error)->
+            deferred.reject()
 
         deferred.promise
 
       getCustomers: (id)->
         if id then @_pool[id] else @_pool
 
-      getOrFetchCustomers: (id)->
-        deferred = $q.defer()
-
-        exist = if id then @_pool[id] else (if !_.isEmpty @_pool then @_pool else undefined)
-
-        if exist
-          deferred.resolve exist
-        else
-          $q.when @fetchCustomers(id), (response)->
-            deferred.resolve response
-
-        deferred.promise
-
-      createCustomer: (customerData) ->
+      createCustomer: (customerData, callback, errorCallback) ->
         deferred = $q.defer()
         scope = this
 
-        Customers.create customerData, ->
+        Customers.create customerData, (response)->
+          #server must be return created object with a generated ID
+          customer = scope._retrieveInstance(response)
+          deferred.resolve customer
+          if callback then callback(customer)
+        , (error)->
+          deferred.reject()
+          if errorCallback then errorCallback(error)
+
+        deferred.promise
+
+      updateCustomer: (customerData, callback, errorCallback) ->
+        deferred = $q.defer()
+        scope = this
+
+        Customers.update customerData, ->
           customer = scope._retrieveInstance(customerData)
           deferred.resolve customer
+          if callback then callback(customer)
+        , (error)->
+          deferred.reject()
+          if errorCallback then errorCallback(error)
+
+        deferred.promise
+
+      deleteCustomer: (customerData, callback, errorCallback) ->
+        deferred = $q.defer()
+        scope = this
+
+        customerData = id: customerData.id
+
+        Customers.delete customerData, ->
+          customer = scope._deleteInstance(customerData)
+          deferred.resolve customer
+          if callback then callback(customer)
+        , (error)->
+          deferred.reject()
+          if errorCallback then errorCallback(error)
 
         deferred.promise
 

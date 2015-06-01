@@ -8,6 +8,5 @@
  # Controller of the testApp
 ###
 angular.module('testApp')
-  .controller 'HomeCtrl', ($scope, customersManager, $q) ->
-    $q.when customersManager.fetchCustomers(), (data)->
-      $scope.customers = data
+  .controller 'HomeCtrl', (customersData, $scope, customersManager, $q) ->
+    $scope.customers = customersData

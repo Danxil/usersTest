@@ -11,7 +11,10 @@ router.get '/customers/:id?', (req, res) ->
 router.put '/customers/:id', (req, res) ->
   res.send 200
 
-router.post '/customers/:id', (req, res) ->
+router.post '/customers', (req, res) ->
+  res.send 200
+
+router.delete '/customers/:id', (req, res) ->
   res.send 200
 
 

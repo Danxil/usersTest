@@ -2,16 +2,34 @@
   {
     "id": "1",
     "name": "Adrey",
-    "email": "adrey@test.com"
+    "email": "adrey@test.com",
+    "telephone": "12-34-56",
+    "address": "206",
+    "street": "Lenina",
+    "city": "Charkiv",
+    "state": "male",
+    "zip": "84468"
   },
   {
     "id": "2",
     "name": "Olga",
-    "email": "olga@test.com"
+    "email": "olga@test.com",
+    "telephone": "65-43-21",
+    "address": "501",
+    "street": "Erepinko",
+    "city": "Odessa",
+    "state": "female",
+    "zip": "22984"
   },
   {
     "id": "3",
     "name": "Petro",
-    "email": "petro@test.com"
+    "email": "petro@test.com",
+    "telephone": "87-54-33",
+    "address": "501",
+    "street": "Kolmova",
+    "city": "Lviv",
+    "state": "male",
+    "zip": "36346"
   }
 ]

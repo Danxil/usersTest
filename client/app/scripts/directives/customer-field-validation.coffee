@@ -7,7 +7,7 @@
  # # fieldValidation
 ###
 angular.module('testApp')
-  .directive('fieldValidation', ($compile)->
+  .directive('customerFieldValidation', ($compile)->
     restrict: 'A'
     link: ($scope, elem, attrs) ->
       fields =
@@ -50,18 +50,18 @@ angular.module('testApp')
       if fields[$scope.fieldName].required
         elem.attr 'required', true
 
-      elem.attr 'ng-pattern', fields[attrs.fieldValidation].pattern.reg
+      elem.attr 'ng-pattern', fields[attrs.customerFieldValidation].pattern.reg
 
       errorBlock = $('<div class="error-block"></div>')
 
       errorBlock.append('<p class="input-error required">This field is required</p>')
-      errorBlock.append('<p class="input-error pattern">' + fields[attrs.fieldValidation].pattern.errorMessage + '</p>')
+      errorBlock.append('<p class="input-error pattern">' + fields[attrs.customerFieldValidation].pattern.errorMessage + '</p>')
 
       errorBlock.insertAfter elem
 
       $compile(errorBlock)($scope)
 
-      elem.removeAttr('data-field-validation')
+      elem.removeAttr('data-customer-field-validation')
 
       $compile(elem)($scope)
   )

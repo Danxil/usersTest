@@ -1,9 +1,28 @@
+<p class="text-right">
+  <a class="btn btn-default btn-primary" href="#/home">Customers list</a>
+</p>
 <form name="editCustomerForm" ng-submit="submit()">
   <div class="form-group" data-ng-if="fieldName != 'id'" data-ng-repeat="(fieldName, fieldValue) in viewCustomer">
     <label>
-      <edit-customer-label data-field-name="{{fieldName}}"></edit-customer-label>
+      <customer-field-label data-field-name="{{fieldName}}"></customer-field-label>
     </label>
-    <input name="{{fieldName}}" class="form-control" data-ng-model="viewCustomer[fieldName]" data-field-validation="{{fieldName}}">
+    <input name="{{fieldName}}" class="form-control" data-ng-model="viewCustomer[fieldName]" data-customer-field-validation="{{fieldName}}">
   </div>
-  <button type="submit" class="btn btn-default btn-primary {{editCustomerForm.$invalid ? 'disabled' : ''}}">Submit</button>
+  <button type="submit" class="btn btn-default btn-primary {{!wasUpdated || editCustomerForm.$invalid ? 'disabled' : ''}}">Update customer</button>
+  <a class="btn btn-default btn-danger" data-toggle="modal" data-target=".confirmation-delete">Delete customer</a>
 </form>
+<div class="modal fade confirmation-delete" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h4 class="modal-title" id="mySmallModalLabel">Are you sure want delete this customer?</h4>
+      </div>
+      <div class="modal-body">
+        <p class="text-right">
+          <a class="btn btn-default btn-danger" data-toggle="modal" data-ng-click="delete()" data-target=".confirmation-delete">Delete customer</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
