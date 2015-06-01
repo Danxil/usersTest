@@ -10,9 +10,9 @@
 angular.module('testApp')
   .controller 'CreateCustomerCtrl', ($scope, $rootScope, customersManager, $location) ->
     $scope.newCustomer =
-      name: 'wadawd'
-      email: 'awdwad@wadw.wad'
-      telephone: '22-22-22'
+      name: ''
+      email: ''
+      telephone: ''
       address: ''
       street: ''
       city: ''
