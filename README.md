@@ -1,4 +1,4 @@
-How to run project:
+<p>How to run project:</p>
 1. Install nodeJS
 2. Install npm
 3. Install bower
