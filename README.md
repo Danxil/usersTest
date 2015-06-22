@@ -6,7 +6,7 @@
 5. Go to customersTest/server/
 6. Run "npm install"
 7. Run "grunt"
-8. Go to customersTest/client/
+8. Go to usersTest/
 9. Run "npm install"
 10. Run "bower install"
 11. Run "grunt serve"
