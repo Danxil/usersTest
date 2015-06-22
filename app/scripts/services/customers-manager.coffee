@@ -162,7 +162,7 @@ angular.module('testApp')
         id: 2
         firstName: 'Natasha'
         lastName: 'Aleksandrova'
-        email: 'Natasha@gmail.com'
+        email: 'natasha@gmail.com'
         age: '55'
       ,
       3:
@@ -183,7 +183,7 @@ angular.module('testApp')
         id: 5
         firstName: 'Natasha'
         lastName: 'Aleksandrova'
-        email: 'Natasha@gmail.com'
+        email: 'natasha@gmail.com'
         age: '55'
       ,
       6:
@@ -204,7 +204,7 @@ angular.module('testApp')
         id: 8
         firstName: 'Natasha'
         lastName: 'Aleksandrova'
-        email: 'Natasha@gmail.com'
+        email: 'natasha@gmail.com'
         age: '55'
       ,
       9:
@@ -225,7 +225,7 @@ angular.module('testApp')
         id: 11
         firstName: 'Natasha'
         lastName: 'Aleksandrova'
-        email: 'Natasha@gmail.com'
+        email: 'natasha@gmail.com'
         age: '55'
       ,
       12:
@@ -246,7 +246,7 @@ angular.module('testApp')
         id: 14
         firstName: 'Natasha'
         lastName: 'Aleksandrova'
-        email: 'Natasha@gmail.com'
+        email: 'natasha@gmail.com'
         age: '55'
       ,
       15:
@@ -267,7 +267,7 @@ angular.module('testApp')
         id: 17
         firstName: 'Natasha'
         lastName: 'Aleksandrova'
-        email: 'Natasha@gmail.com'
+        email: 'natasha@gmail.com'
         age: '55'
       ,
       18:
@@ -288,7 +288,7 @@ angular.module('testApp')
         id: 20
         firstName: 'Natasha'
         lastName: 'Aleksandrova'
-        email: 'Natasha@gmail.com'
+        email: 'natasha@gmail.com'
         age: '55'
       ,
       21:
@@ -309,7 +309,7 @@ angular.module('testApp')
         id: 23
         firstName: 'Natasha'
         lastName: 'Aleksandrova'
-        email: 'Natasha@gmail.com'
+        email: 'natasha@gmail.com'
         age: '55'
       ,
       24:
@@ -330,7 +330,7 @@ angular.module('testApp')
         id: 26
         firstName: 'Natasha'
         lastName: 'Aleksandrova'
-        email: 'Natasha@gmail.com'
+        email: 'natasha@gmail.com'
         age: '55'
       ,
       27:
@@ -351,7 +351,7 @@ angular.module('testApp')
         id: 29
         firstName: 'Natasha'
         lastName: 'Aleksandrova'
-        email: 'Natasha@gmail.com'
+        email: 'natasha@gmail.com'
         age: '55'
       ,
       30:
@@ -372,7 +372,7 @@ angular.module('testApp')
         id: 32
         firstName: 'Natasha'
         lastName: 'Aleksandrova'
-        email: 'Natasha@gmail.com'
+        email: 'natasha@gmail.com'
         age: '55'
       ,
       33:
@@ -393,7 +393,7 @@ angular.module('testApp')
         id: 35
         firstName: 'Natasha'
         lastName: 'Aleksandrova'
-        email: 'Natasha@gmail.com'
+        email: 'natasha@gmail.com'
         age: '55'
       ,
       36:
@@ -414,7 +414,7 @@ angular.module('testApp')
         id: 38
         firstName: 'Natasha'
         lastName: 'Aleksandrova'
-        email: 'Natasha@gmail.com'
+        email: 'natasha@gmail.com'
         age: '55'
       ,
       39:
@@ -435,7 +435,7 @@ angular.module('testApp')
         id: 41
         firstName: 'Natasha'
         lastName: 'Aleksandrova'
-        email: 'Natasha@gmail.com'
+        email: 'natasha@gmail.com'
         age: '55'
       ,
       42:
@@ -443,7 +443,7 @@ angular.module('testApp')
         firstName: 'Vasia'
         lastName: 'Vasiliev'
         email: 'vasia@gmail.com'
-        age: '22'
+        age: '24'
       ,
       43:
         id: 43
@@ -456,7 +456,7 @@ angular.module('testApp')
         id: 44
         firstName: 'Natasha'
         lastName: 'Aleksandrova'
-        email: 'Natasha@gmail.com'
+        email: 'natasha@gmail.com'
         age: '55'
       ,
       45:
@@ -464,7 +464,7 @@ angular.module('testApp')
         firstName: 'Vasia'
         lastName: 'Vasiliev'
         email: 'vasia@gmail.com'
-        age: '22'
+        age: '23'
     }
 
     #hardcode end

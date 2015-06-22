@@ -173,7 +173,7 @@
           id: 2,
           firstName: 'Natasha',
           lastName: 'Aleksandrova',
-          email: 'Natasha@gmail.com',
+          email: 'natasha@gmail.com',
           age: '55'
         },
         3: {
@@ -194,7 +194,7 @@
           id: 5,
           firstName: 'Natasha',
           lastName: 'Aleksandrova',
-          email: 'Natasha@gmail.com',
+          email: 'natasha@gmail.com',
           age: '55'
         },
         6: {
@@ -215,7 +215,7 @@
           id: 8,
           firstName: 'Natasha',
           lastName: 'Aleksandrova',
-          email: 'Natasha@gmail.com',
+          email: 'natasha@gmail.com',
           age: '55'
         },
         9: {
@@ -236,7 +236,7 @@
           id: 11,
           firstName: 'Natasha',
           lastName: 'Aleksandrova',
-          email: 'Natasha@gmail.com',
+          email: 'natasha@gmail.com',
           age: '55'
         },
         12: {
@@ -257,7 +257,7 @@
           id: 14,
           firstName: 'Natasha',
           lastName: 'Aleksandrova',
-          email: 'Natasha@gmail.com',
+          email: 'natasha@gmail.com',
           age: '55'
         },
         15: {
@@ -278,7 +278,7 @@
           id: 17,
           firstName: 'Natasha',
           lastName: 'Aleksandrova',
-          email: 'Natasha@gmail.com',
+          email: 'natasha@gmail.com',
           age: '55'
         },
         18: {
@@ -299,7 +299,7 @@
           id: 20,
           firstName: 'Natasha',
           lastName: 'Aleksandrova',
-          email: 'Natasha@gmail.com',
+          email: 'natasha@gmail.com',
           age: '55'
         },
         21: {
@@ -320,7 +320,7 @@
           id: 23,
           firstName: 'Natasha',
           lastName: 'Aleksandrova',
-          email: 'Natasha@gmail.com',
+          email: 'natasha@gmail.com',
           age: '55'
         },
         24: {
@@ -341,7 +341,7 @@
           id: 26,
           firstName: 'Natasha',
           lastName: 'Aleksandrova',
-          email: 'Natasha@gmail.com',
+          email: 'natasha@gmail.com',
           age: '55'
         },
         27: {
@@ -362,7 +362,7 @@
           id: 29,
           firstName: 'Natasha',
           lastName: 'Aleksandrova',
-          email: 'Natasha@gmail.com',
+          email: 'natasha@gmail.com',
           age: '55'
         },
         30: {
@@ -383,7 +383,7 @@
           id: 32,
           firstName: 'Natasha',
           lastName: 'Aleksandrova',
-          email: 'Natasha@gmail.com',
+          email: 'natasha@gmail.com',
           age: '55'
         },
         33: {
@@ -404,7 +404,7 @@
           id: 35,
           firstName: 'Natasha',
           lastName: 'Aleksandrova',
-          email: 'Natasha@gmail.com',
+          email: 'natasha@gmail.com',
           age: '55'
         },
         36: {
@@ -425,7 +425,7 @@
           id: 38,
           firstName: 'Natasha',
           lastName: 'Aleksandrova',
-          email: 'Natasha@gmail.com',
+          email: 'natasha@gmail.com',
           age: '55'
         },
         39: {
@@ -446,7 +446,7 @@
           id: 41,
           firstName: 'Natasha',
           lastName: 'Aleksandrova',
-          email: 'Natasha@gmail.com',
+          email: 'natasha@gmail.com',
           age: '55'
         },
         42: {
@@ -454,7 +454,7 @@
           firstName: 'Vasia',
           lastName: 'Vasiliev',
           email: 'vasia@gmail.com',
-          age: '22'
+          age: '24'
         },
         43: {
           id: 43,
@@ -467,7 +467,7 @@
           id: 44,
           firstName: 'Natasha',
           lastName: 'Aleksandrova',
-          email: 'Natasha@gmail.com',
+          email: 'natasha@gmail.com',
           age: '55'
         },
         45: {
@@ -475,7 +475,7 @@
           firstName: 'Vasia',
           lastName: 'Vasiliev',
           email: 'vasia@gmail.com',
-          age: '22'
+          age: '23'
         }
       };
       return customersManager;

@@ -18,7 +18,7 @@ angular.module('testApp')
         if $scope.infDisabled
           return
 
-        if $(window).scrollTop() == $(document).height() - $(window).height()
+        if $(window).scrollTop() + $(window).height() > $(document).height() - 100
           if $scope.infScrollCtrl.onScroll then $scope.infScrollCtrl.onScroll()
           $scope.$apply()
 

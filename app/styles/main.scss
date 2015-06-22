@@ -71,7 +71,6 @@ input.ng-touched.ng-invalid-pattern + .error-block {
 }
 
 .list-group-item {
-  display: table;
   width: 100%;
 
   &:hover {
@@ -96,4 +95,39 @@ input.ng-touched.ng-invalid-pattern + .error-block {
       width: 100%;
     }
   }
+}
+
+.order {
+  .form-group {
+    margin-left: 10px;
+
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+}
+
+.animate-repeat {
+  max-height: 300px;
+}
+
+.animate-repeat.ng-move,
+.animate-repeat.ng-enter,
+.animate-repeat.ng-leave {
+  -webkit-transition:all linear 1s;
+  transition:all linear 1s;
+}
+
+.animate-repeat.ng-leave.ng-leave-active,
+.animate-repeat.ng-move,
+.animate-repeat.ng-enter {
+  opacity:0;
+  max-height:0;
+}
+
+.animate-repeat.ng-leave,
+.animate-repeat.ng-move.ng-move-active,
+.animate-repeat.ng-enter.ng-enter-active {
+  opacity:1;
+  max-height: 300px;
 }

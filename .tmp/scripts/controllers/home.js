@@ -8,25 +8,72 @@
     * # HomeCtrl
     * Controller of the testApp
    */
-  angular.module('testApp').controller('HomeCtrl', function(customersData, $scope, customersManager, $rootScope, $modal, $routeParams, $filter) {
+  angular.module('testApp').controller('HomeCtrl', function(customersData, $scope, customersManager, $rootScope, $modal, $routeParams) {
     $scope.customersObj = customersData;
-    $scope.customersAll = _.values($scope.customersObj);
+    $scope.customers = _.values($scope.customersObj);
     $scope.selectedCustomers = [];
-    $scope.pageChanged = function() {
-      var start;
-      start = $scope.itemsPerPage * ($scope.currentPage - 1);
-      return $scope.customers = $scope.customersAll.slice(start, start + $scope.itemsPerPage);
+    $scope.filter = {
+      orderBy: {
+        set: function(field) {
+          $scope.filter.orderBy.reverse = $scope.filter.orderBy.field === field ? !$scope.filter.orderBy.reverse : false;
+          return $scope.filter.orderBy.field = field;
+        },
+        field: 'firstName',
+        reverse: false
+      }
+    };
+    $scope.pagination = {
+      calcAfterFilter: function(array) {
+        return (function() {
+          this.totalItems = array.length;
+          return this.totalPages = Math.ceil($scope.pagination.totalItems / $scope.pagination.itemsPerPage);
+        }).call($scope.pagination);
+      },
+      calcPagination: function() {
+        this.totalItems = $scope.customers.length;
+        this.startShowItems = this.itemsPerPage * (this.currentPage - 1);
+        return this.endShowItems = this.startShowItems + this.itemsPerPage;
+      },
+      togglePagination: function() {
+        if (this.paginatorEnabled) {
+          $scope.pagination.infCurrentPage = $scope.pagination.currentPage;
+          return this.paginatorEnabled = false;
+        } else {
+          $scope.pagination.currentPage = $scope.pagination.infCurrentPage;
+          $scope.pagination.calcPagination();
+          return this.paginatorEnabled = true;
+        }
+      },
+      totalItems: $scope.customers.length,
+      itemsPerPage: 8,
+      currentPage: $routeParams.currentPage || 1,
+      infCurrentPage: $routeParams.currentPage || 1,
+      infScrollCtrl: {
+        calcFn: function() {
+          if ($scope.pagination.infCurrentPage > $scope.pagination.totalPages) {
+            return;
+          }
+          $scope.pagination.startShowItems = 0;
+          return $scope.pagination.endShowItems = $scope.pagination.itemsPerPage * $scope.pagination.infCurrentPage;
+        },
+        onScroll: function() {
+          if ($scope.pagination.infCurrentPage + 1 > $scope.pagination.totalPages) {
+            return;
+          }
+          $scope.pagination.infCurrentPage++;
+          return this.calcFn();
+        },
+        onEnabled: function() {
+          return this.calcFn();
+        }
+      }
     };
     $scope.$watchCollection('customersObj', function() {
-      $scope.customersAll = _.values($scope.customersObj);
-      $scope.totalItems = $scope.customersAll.length;
-      $scope.totalPages = Math.ceil($scope.totalItems / $scope.itemsPerPage);
-      return $scope.pageChanged();
+      $scope.customers = _.values($scope.customersObj);
+      $scope.pagination.totalItems = $scope.customers.length;
+      $scope.pagination.totalPages = Math.ceil($scope.pagination.totalItems / $scope.pagination.itemsPerPage);
+      return $scope.pagination.calcPagination();
     });
-    $scope.totalItems = $scope.customersAll.length;
-    $scope.itemsPerPage = 8;
-    $scope.currentPage = $routeParams.currentPage || 1;
-    $scope.infCurrentPage = $scope.currentPage;
     $scope.deleteConfirmation = function(customer) {
       var confirmationDeleteModal;
       if (customer) {
@@ -42,7 +89,8 @@
         }
       });
       return confirmationDeleteModal.result.then(function() {
-        return $scope.selectedCustomers = [];
+        $scope.selectedCustomers = [];
+        return $scope.pagination.calcPagination();
       }, function() {
         return $scope.selectedCustomers = [];
       });
@@ -65,7 +113,7 @@
         return $scope.selectedCustomers = [];
       });
     };
-    $scope.toggleSelectCustomer = function(customer) {
+    return $scope.toggleSelectCustomer = function(customer) {
       var index;
       index = $scope.selectedCustomers.indexOf(customer);
       if (index !== -1) {
@@ -73,37 +121,6 @@
       } else {
         return $scope.selectedCustomers.push(customer);
       }
-    };
-    $scope.togglePagination = function() {
-      if ($scope.paginatorEnabled) {
-        $scope.infCurrentPage = $scope.currentPage;
-        return $scope.paginatorEnabled = false;
-      } else {
-        $scope.currentPage = $scope.infCurrentPage;
-        $scope.pageChanged();
-        return $scope.paginatorEnabled = true;
-      }
-    };
-    $scope.infScrollCtrl = {
-      calcFn: function() {
-        if ($scope.infCurrentPage > $scope.totalPages) {
-          return;
-        }
-        return $scope.customers = $scope.customersAll.slice(0, $scope.itemsPerPage * $scope.infCurrentPage);
-      },
-      onScroll: function() {
-        if ($scope.infCurrentPage + 1 > $scope.totalPages) {
-          return;
-        }
-        $scope.infCurrentPage++;
-        return this.calcFn();
-      },
-      onEnabled: function() {
-        return this.calcFn();
-      }
-    };
-    return $scope.fiterSearch = function(val) {
-      return $filter('searchText')($scope.searchText, $scope.customersAll);
     };
   });
 

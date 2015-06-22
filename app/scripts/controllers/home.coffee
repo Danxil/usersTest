@@ -8,25 +8,62 @@
  # Controller of the testApp
 ###
 angular.module('testApp')
-  .controller 'HomeCtrl', (customersData, $scope, customersManager, $rootScope, $modal, $routeParams, $filter) ->
+  .controller 'HomeCtrl', (customersData, $scope, customersManager, $rootScope, $modal, $routeParams) ->
     $scope.customersObj = customersData
-    $scope.customersAll = _.values $scope.customersObj
+    $scope.customers = _.values $scope.customersObj
     $scope.selectedCustomers = []
 
-    $scope.pageChanged = ->
-      start = $scope.itemsPerPage * ($scope.currentPage - 1)
-      $scope.customers = $scope.customersAll.slice start, start + $scope.itemsPerPage
+    $scope.filter =
+      orderBy:
+        set: (field)->
+          $scope.filter.orderBy.reverse = if ($scope.filter.orderBy.field == field) then !$scope.filter.orderBy.reverse else false
+          $scope.filter.orderBy.field = field
+        field: 'firstName'
+        reverse: false
+
+    $scope.pagination =
+      calcAfterFilter: (array)->
+        (->
+          @totalItems = array.length
+          @totalPages = Math.ceil $scope.pagination.totalItems / $scope.pagination.itemsPerPage
+        ).call($scope.pagination)
+      calcPagination: ->
+        @totalItems = $scope.customers.length
+        @startShowItems = @itemsPerPage * (@currentPage - 1)
+        @endShowItems = @startShowItems + @itemsPerPage
+      togglePagination: ->
+        if @paginatorEnabled
+          $scope.pagination.infCurrentPage = $scope.pagination.currentPage
+          @paginatorEnabled = false
+        else
+          $scope.pagination.currentPage = $scope.pagination.infCurrentPage
+          $scope.pagination.calcPagination()
+          @paginatorEnabled = true
+      totalItems: $scope.customers.length
+      itemsPerPage: 8
+      currentPage: $routeParams.currentPage || 1
+      infCurrentPage: $routeParams.currentPage || 1
+      infScrollCtrl:
+        calcFn: ()->
+          if $scope.pagination.infCurrentPage > $scope.pagination.totalPages
+            return
+
+          $scope.pagination.startShowItems = 0
+          $scope.pagination.endShowItems = $scope.pagination.itemsPerPage * $scope.pagination.infCurrentPage
+        onScroll: ->
+          if $scope.pagination.infCurrentPage + 1 > $scope.pagination.totalPages
+            return
+
+          $scope.pagination.infCurrentPage++
+          @calcFn()
+        onEnabled: ->
+          @calcFn()
 
     $scope.$watchCollection 'customersObj',  ->
-      $scope.customersAll = _.values $scope.customersObj
-      $scope.totalItems = $scope.customersAll.length
-      $scope.totalPages = Math.ceil $scope.totalItems / $scope.itemsPerPage
-      $scope.pageChanged()
-
-    $scope.totalItems = $scope.customersAll.length
-    $scope.itemsPerPage = 8
-    $scope.currentPage = $routeParams.currentPage || 1
-    $scope.infCurrentPage = $scope.currentPage;
+      $scope.customers = _.values $scope.customersObj
+      $scope.pagination.totalItems = $scope.customers.length
+      $scope.pagination.totalPages = Math.ceil $scope.pagination.totalItems / $scope.pagination.itemsPerPage
+      $scope.pagination.calcPagination()
 
     $scope.deleteConfirmation = (customer)->
       if customer
@@ -41,6 +78,8 @@ angular.module('testApp')
 
       confirmationDeleteModal.result.then ->
         $scope.selectedCustomers = []
+
+        $scope.pagination.calcPagination()
       , ->
         $scope.selectedCustomers = []
 
@@ -65,33 +104,3 @@ angular.module('testApp')
         $scope.selectedCustomers.splice(index, 1)
       else
         $scope.selectedCustomers.push customer
-
-    $scope.togglePagination = ->
-      if $scope.paginatorEnabled
-        $scope.infCurrentPage = $scope.currentPage
-
-        $scope.paginatorEnabled = false
-      else
-        $scope.currentPage = $scope.infCurrentPage
-
-        $scope.pageChanged()
-
-        $scope.paginatorEnabled = true
-
-    $scope.infScrollCtrl =
-      calcFn: ()->
-        if $scope.infCurrentPage > $scope.totalPages
-          return
-
-        $scope.customers = $scope.customersAll.slice 0, $scope.itemsPerPage * $scope.infCurrentPage
-      onScroll: ->
-          if $scope.infCurrentPage + 1 > $scope.totalPages
-            return
-
-          $scope.infCurrentPage++
-          @calcFn()
-      onEnabled: ->
-        @calcFn()
-
-    $scope.fiterSearch = (val)->
-      $filter('searchText') $scope.searchText, $scope.customersAll
