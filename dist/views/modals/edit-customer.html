@@ -1,0 +1,17 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="mySmallModalLabel">Update customer</h4>
+</div>
+<div class="modal-body">
+  <form name="editCustomerForm" ng-submit="">
+    <div class="form-group" data-ng-if="fieldName != 'id'" data-ng-repeat="(fieldName, fieldValue) in viewCustomer">
+      <label>
+        <customer-field-label data-field-name="{{fieldName}}"></customer-field-label>
+      </label>
+      <input name="{{fieldName}}" class="form-control" data-ng-model="viewCustomer[fieldName]" data-customer-field-validation="{{fieldName}}">
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <a class="btn btn-default btn-primary" data-ng-click="cancel()">Cancel</a>
+  <a class="btn btn-default btn-primary" data-ng-click="(!wasUpdated || editCustomerForm.$invalid) || submit()" data-ng-disabled="!wasUpdated || editCustomerForm.$invalid">Update customer</a>
+</div>

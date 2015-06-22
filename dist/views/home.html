@@ -1,0 +1,67 @@
+<p class="top-btns">
+  <a class="edit-btn btn btn-default pull-left" data-ng-click="pagination.togglePagination()">{{pagination.paginatorEnabled ? 'Enabled infinite scroll' : 'Enabled paginator'}}</a>
+  <a class="edit-btn btn btn-default btn-danger pull-right" data-ng-click="!selectedCustomers.length || deleteConfirmation()" data-ng-disabled="!selectedCustomers.length">Delete selected</a>
+</p>
+<div class="clearboth"></div>
+<p data-ng-show="pagination.paginatorEnabled">
+  <pagination data-items-per-page="pagination.itemsPerPage" data-total-items="pagination.totalItems" data-ng-model="pagination.currentPage" data-ng-change="pagination.calcPagination()"></pagination>
+</p>
+<div class="filter form-inline">
+  <div class="form-group pull-left">
+    <input class="form-control" data-ng-model="filter.searchText" placeholder="Search" id="search" type="text"/>
+  </div>
+  <div class="text-right">
+    <div class="form-group">
+      <input class="form-control" data-ng-model="filter.ageFrom" placeholder="Age from" id="age-from" type="text"/>
+    </div>
+    <div class="form-group">
+      <input class="form-control" data-ng-model="filter.ageTo" placeholder="Age to" id="age-to" type="text"/>
+    </div>
+  </div>
+  <p></p>
+</div>
+<div class="order form-inline">
+  <p>Order by:</p>
+  <div class="div">
+    <div class="form-group" data-ng-repeat="(key, value) in customers[0] track by $index" data-ng-if="key != 'id'">
+      <a class="btn btn-default" data-ng-class="{'btn-info': filter.orderBy.field == key}" data-ng-click="filter.orderBy.set(key)">
+        <customer-field-label data-field-name="{{key}}"></customer-field-label>&nbsp;
+        <i data-ng-show="filter.orderBy.field == key">{{!filter.orderBy.reverse ? '&#8595;': '&#8593;'}}</i>
+      </a>
+    </div>
+  </div>
+  <p></p>
+</div>
+<ul class="list-group" data-infinite-scroll="pagination.infScrollCtrl" data-inf-disabled="pagination.paginatorEnabled">
+  <li data-ng-repeat="(key, customer) in customers | filterByText:filter.searchText:filter.ageFrom:filter.ageTo:pagination.calcAfterFilter | orderBy:filter.orderBy.field:filter.orderBy.reverse" data-ng-show="pagination.startShowItems <= $index && pagination.endShowItems >= $index" data-customer-location="edit-customer/{{customer.id}}" class="list-group-item animate-show {{selectedCustomers.indexOf(customer) != -1 ? 'selected' : ''}}">
+    <div class="user-info">
+      <p>
+        <strong>First name: </strong>
+        {{customer.firstName}}
+      </p>
+      <p>
+        <strong>Last name: </strong>
+        {{customer.lastName}}
+      </p>
+      <p>
+        <strong>Email: </strong>
+        {{customer.email}}
+      </p>
+      <p>
+        <strong>Age: </strong>
+        {{customer.age}}
+      </p>
+    </div>
+    <div class="btn-wrapper">
+      <p>
+        <a class="edit-btn btn btn-default" data-ng-click="toggleSelectCustomer(customer)">{{selectedCustomers.indexOf(customer) != -1 ? 'Unselected' : 'Selected'}}</a>
+      </p>
+      <p>
+        <a class="edit-btn btn btn-default btn-primary" data-ng-click="editCustomer(customer)">Edit customer</a>
+      </p>
+      <p>
+        <a class="btn btn-default btn-danger" data-ng-click="deleteConfirmation(customer)">Delete customer</a>
+      </p>
+    </div>
+  </li>
+</ul>
