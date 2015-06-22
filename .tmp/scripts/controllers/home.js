@@ -44,6 +44,7 @@
           return this.paginatorEnabled = true;
         }
       },
+      paginatorEnabled: false,
       totalItems: $scope.customers.length,
       itemsPerPage: 8,
       currentPage: $routeParams.currentPage || 1,

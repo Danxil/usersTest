@@ -39,6 +39,7 @@ angular.module('testApp')
           $scope.pagination.currentPage = $scope.pagination.infCurrentPage
           $scope.pagination.calcPagination()
           @paginatorEnabled = true
+      paginatorEnabled: false
       totalItems: $scope.customers.length
       itemsPerPage: 8
       currentPage: $routeParams.currentPage || 1

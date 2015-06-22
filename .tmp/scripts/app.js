@@ -18,11 +18,15 @@
       templateUrl: 'views/home.html',
       controller: 'HomeCtrl',
       resolve: {
-        customersData: function($q, customersManager) {
+        customersData: function($q, customersManager, $rootScope, $timeout) {
           var deferred;
+          $rootScope.setOverlay(true);
           deferred = $q.defer();
           $q.when(customersManager.getOrFetchCustomers(), function(data) {
-            return deferred.resolve(data);
+            return $timeout(function() {
+              $rootScope.setOverlay(false);
+              return deferred.resolve(data);
+            }, 1000);
           });
           return deferred.promise;
         }

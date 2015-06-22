@@ -12,7 +12,9 @@ angular.module 'testApp'
     $scope.selectedCustomers = selectedCustomers
 
     $scope.delete = ->
+      $rootScope.setOverlay(true)
       customersManager.deleteCustomers $scope.selectedCustomers, ->
+        $rootScope.setOverlay(false)
         $modalInstance.close()
 
     $scope.cancel = ->

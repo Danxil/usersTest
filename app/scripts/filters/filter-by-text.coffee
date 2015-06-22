@@ -17,7 +17,7 @@ angular.module 'testApp'
 
         return input
 
-      if text
+      if text && text.toLowerCase
         text = text.toLowerCase()
       ageFrom = parseInt ageFrom
       ageTo = parseInt ageTo
@@ -33,7 +33,7 @@ angular.module 'testApp'
             continue
 
           if field.toLowerCase
-            field.toLowerCase()
+            field = field.toLowerCase()
 
           success = (field.indexOf(text) != -1 || !text) &&
               (currentAge >= ageFrom || !ageFrom) && (currentAge <= ageTo || !ageTo)

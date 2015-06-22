@@ -33,7 +33,7 @@
   <p></p>
 </div>
 <ul class="list-group" data-infinite-scroll="pagination.infScrollCtrl" data-inf-disabled="pagination.paginatorEnabled">
-  <li data-ng-repeat="(key, customer) in customers | filterByText:filter.searchText:filter.ageFrom:filter.ageTo:pagination.calcAfterFilter | orderBy:filter.orderBy.field:filter.orderBy.reverse" data-ng-show="pagination.startShowItems <= $index && pagination.endShowItems >= $index" data-customer-location="edit-customer/{{customer.id}}" class="list-group-item animate-repeat {{selectedCustomers.indexOf(customer) != -1 ? 'selected' : ''}}">
+  <li data-ng-repeat="(key, customer) in customers | filterByText:filter.searchText:filter.ageFrom:filter.ageTo:pagination.calcAfterFilter | orderBy:filter.orderBy.field:filter.orderBy.reverse" data-ng-show="pagination.startShowItems <= $index && pagination.endShowItems >= $index" data-customer-location="edit-customer/{{customer.id}}" class="list-group-item animate-show {{selectedCustomers.indexOf(customer) != -1 ? 'selected' : ''}}">
     <div class="user-info">
       <p>
         <strong>First name: </strong>

@@ -8754,44 +8754,147 @@ input.ng-touched.ng-invalid-pattern + .error-block .input-error.pattern {
   left: 50%;
   margin-top: -64px;
   margin-left: -64px;
+  -moz-animation: spin 1s infinite linear;
+  -webkit-animation: spin 1s infinite linear;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/danxil\/projects\/test-2\/customersTest\/app\/styles\/main\.scss}line{font-family:\0000364}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/danxil\/projects\/test-2\/customersTest\/app\/styles\/main\.scss}line{font-family:\0000366}}
 .top-btns {
   overflow: hidden;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/danxil\/projects\/test-2\/customersTest\/app\/styles\/main\.scss}line{font-family:\0000368}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/danxil\/projects\/test-2\/customersTest\/app\/styles\/main\.scss}line{font-family:\0000370}}
 .clearboth {
   clear: both;
   width: 100%;
 }
 
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/danxil\/projects\/test-2\/customersTest\/app\/styles\/main\.scss}line{font-family:\0000373}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/danxil\/projects\/test-2\/customersTest\/app\/styles\/main\.scss}line{font-family:\0000375}}
 .list-group-item {
-  display: table;
   width: 100%;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/danxil\/projects\/test-2\/customersTest\/app\/styles\/main\.scss}line{font-family:\0000377}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/danxil\/projects\/test-2\/customersTest\/app\/styles\/main\.scss}line{font-family:\0000378}}
 .list-group-item:hover {
   background: #f7f7f7;
   cursor: pointer;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/danxil\/projects\/test-2\/customersTest\/app\/styles\/main\.scss}line{font-family:\0000382}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/danxil\/projects\/test-2\/customersTest\/app\/styles\/main\.scss}line{font-family:\0000383}}
 .list-group-item.selected {
   background: #eaeaea;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/danxil\/projects\/test-2\/customersTest\/app\/styles\/main\.scss}line{font-family:\0000386}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/danxil\/projects\/test-2\/customersTest\/app\/styles\/main\.scss}line{font-family:\0000387}}
 .list-group-item .user-info {
   display: table-cell;
   width: 100%;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/danxil\/projects\/test-2\/customersTest\/app\/styles\/main\.scss}line{font-family:\0000391}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/danxil\/projects\/test-2\/customersTest\/app\/styles\/main\.scss}line{font-family:\0000392}}
 .list-group-item .btn-wrapper {
   display: table-cell;
   vertical-align: bottom;
 }
-@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/danxil\/projects\/test-2\/customersTest\/app\/styles\/main\.scss}line{font-family:\0000395}}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/danxil\/projects\/test-2\/customersTest\/app\/styles\/main\.scss}line{font-family:\0000396}}
 .list-group-item .btn-wrapper .btn {
   width: 100%;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/danxil\/projects\/test-2\/customersTest\/app\/styles\/main\.scss}line{font-family:\00003103}}
+.order .form-group {
+  margin-left: 10px;
+}
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/danxil\/projects\/test-2\/customersTest\/app\/styles\/main\.scss}line{font-family:\00003106}}
+.order .form-group:first-child {
+  margin-left: 0;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/danxil\/projects\/test-2\/customersTest\/app\/styles\/main\.scss}line{font-family:\00003112}}
+.animate-repeat {
+  max-height: 300px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/danxil\/projects\/test-2\/customersTest\/app\/styles\/main\.scss}line{font-family:\00003116}}
+.animate-repeat.ng-move,
+.animate-repeat.ng-enter,
+.animate-repeat.ng-leave {
+  transition: all linear 1s;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/danxil\/projects\/test-2\/customersTest\/app\/styles\/main\.scss}line{font-family:\00003123}}
+.animate-repeat.ng-leave.ng-leave-active,
+.animate-repeat.ng-move,
+.animate-repeat.ng-enter {
+  opacity: 0;
+  max-height: 0;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/danxil\/projects\/test-2\/customersTest\/app\/styles\/main\.scss}line{font-family:\00003130}}
+.animate-repeat.ng-leave,
+.animate-repeat.ng-move.ng-move-active,
+.animate-repeat.ng-enter.ng-enter-active {
+  opacity: 1;
+  max-height: 300px;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/danxil\/projects\/test-2\/customersTest\/app\/styles\/main\.scss}line{font-family:\00003137}}
+.animate-show {
+  max-height: 300px;
+  opacity: 1;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/danxil\/projects\/test-2\/customersTest\/app\/styles\/main\.scss}line{font-family:\00003142}}
+.animate-show.ng-hide-add.ng-hide-add-active,
+.animate-show.ng-hide-remove.ng-hide-remove-active {
+  transition: all linear 1s;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/danxil\/projects\/test-2\/customersTest\/app\/styles\/main\.scss}line{font-family:\00003148}}
+.animate-show.ng-hide {
+  max-height: 0;
+  opacity: 0;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/danxil\/projects\/test-2\/customersTest\/app\/styles\/main\.scss}line{font-family:\00003153}}
+.view-animate {
+  opacity: 1;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/danxil\/projects\/test-2\/customersTest\/app\/styles\/main\.scss}line{font-family:\00003157}}
+.view-animate.ng-enter, .view-animate.ng-leave {
+  transition: 1s;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/danxil\/projects\/test-2\/customersTest\/app\/styles\/main\.scss}line{font-family:\00003162}}
+.view-animate.ng-enter {
+  opacity: 0;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/danxil\/projects\/test-2\/customersTest\/app\/styles\/main\.scss}line{font-family:\00003165}}
+.view-animate.ng-enter.ng-enter-active {
+  opacity: 1;
+}
+
+@media -sass-debug-info{filename{font-family:file\:\/\/\/home\/danxil\/projects\/test-2\/customersTest\/app\/styles\/main\.scss}line{font-family:\00003169}}
+.view-animate.ng-leave.ng-leave-active {
+  display: none;
+}
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
 }

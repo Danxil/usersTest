@@ -25,10 +25,15 @@ app.config ($routeProvider) ->
       templateUrl: 'views/home.html'
       controller: 'HomeCtrl'
       resolve:
-        customersData: ($q, customersManager) ->
+        customersData: ($q, customersManager, $rootScope, $timeout) ->
+          $rootScope.setOverlay true
+
           deferred = $q.defer()
           $q.when customersManager.getOrFetchCustomers(), (data)->
-            deferred.resolve data
+            $timeout ->
+              $rootScope.setOverlay false
+              deferred.resolve data
+            , 1000
 
           deferred.promise
 
@@ -44,4 +49,3 @@ app.config ($routeProvider) ->
           deferred.promise
     .otherwise
       redirectTo: '/home'
-
